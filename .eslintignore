@@ -1,6 +1,4 @@
-/build/
-/doc/
+/dist/
+/example/
 /node_modules/
-/public/
-/src/transport-layer/ResponseCode.js
 config-overrides.js

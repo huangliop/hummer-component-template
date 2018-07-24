@@ -13,7 +13,7 @@ export default class Demo extends Component {
   static propTypes = {
     demoString: PropTypes.string.isRequired
   }
-
+  
   render() {
     return (
       <div className={style.demoDiv}>

@@ -1,8 +1,7 @@
 {
   "root": true,
   "plugins": [
-    "react",
-    "i18n"
+    "react"
   ],
   "extends": ["react-app","eslint:recommended","plugin:react/recommended"],
   "rules": {
@@ -69,7 +68,6 @@
     "react/prefer-es6-class":"error",
     "react/self-closing-comp":"warn",
     "react/jsx-boolean-value":"warn",
-    "jsx-a11y/href-no-hash":"off",
-    "i18n/no-chinese-character": 0
+    "jsx-a11y/href-no-hash":"off"
   }
 }

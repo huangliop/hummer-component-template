@@ -1,24 +1,14 @@
 
 const path = require('path');
 const webpack = require("webpack");
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 module.exports = {
     entry: './src/index.js',
     output: {
       path: path.join(__dirname, './dist'),  
       filename: 'index.js',
-      libraryTarget: "umd",
-      library: "Demo",     
-      publicPath: '/dist/',      
-      umdNamedDefine: true  
     },
-    resolve: {      
-      alias: {          
-          'react': path.resolve(__dirname, './node_modules/react'),
-          'react-dom': path.resolve(__dirname, './node_modules/react-dom'),      
-          'assets': path.resolve(__dirname, 'assets')
-        }  
-    },  
     externals: {
         react: {          
           commonjs: "react",          
@@ -49,7 +39,35 @@ module.exports = {
           },
           {
             test: /\.*css$/,
-            use : [ 'style-loader','css-loader']
+            use : [ 'style-loader',
+            {
+                loader: require.resolve('css-loader'),
+                options: {
+                  modules: true,
+                  minimize: true,
+                  importLoaders: 1,
+                  localIdentName: `${path.basename(__dirname)}_[local]`
+                },
+            },
+            {
+                loader: require.resolve('postcss-loader'),
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [
+                    require('postcss-flexbugs-fixes'),
+                    require('autoprefixer')({
+                      browsers: [
+                        '>1%',
+                        'last 4 versions',
+                        'Firefox ESR',
+                        'not ie < 9', // React doesn't support IE8 anyway
+                      ],
+                      flexbox: 'no-2009',
+                    }),
+                  ],
+                },
+              },
+            ]
           },
           {
             test: /\.(png|svg|jpg|gif)$/,
@@ -64,12 +82,13 @@ module.exports = {
                     }
                 }
             ]
-        },
+          },
           ]
       },
     plugins:[
         new webpack.DefinePlugin({
           "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV)
-        })
+        }),
+        new MinifyPlugin({}, {comments:false})
     ]
 }
