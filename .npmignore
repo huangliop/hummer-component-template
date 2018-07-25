@@ -1,3 +1,9 @@
 webpack.config.js
+webpack.config.dev.js
+test/
+example/
+    .prettierrc
+    .stylelintrc
+    .eslintignore
     .eslintrc
     .gitignore
