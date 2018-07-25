@@ -17,7 +17,6 @@ export default class Demo extends Component {
   render() {
     return (
       <div className={style.demoDiv}>
-        This is Demo <p/>
         {this.props.demoString}
       </div>
     )
