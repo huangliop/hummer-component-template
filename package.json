@@ -11,7 +11,7 @@
     "lint": "eslint -c .eslintrc ./src --fix && stylelint src/**/*.css --fix",
     "test": "jest --env=jsdom",
     "build": "webpack --config webpack.config.js",
-    "start": "webpack  --config webpack.config.dev.js & webpack-dev-server --hot --config webpack.config.dev.js"
+    "start": "webpack-dev-server --hot --config webpack.config.dev.js"
   },
   "repository": {
     "type": "git"
@@ -21,7 +21,7 @@
     "component",
     "template"
   ],
-  "author": "Huang li",
+  "author": "",
   "license": "MIT",
   "lint-staged": {
     "src/**/*.{js,jsx}": [
